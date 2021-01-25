@@ -25,13 +25,13 @@ Find the thirteen adjacent digits in the 1000-digit number that have the greates
 
 */
 
-
+#include <string.h>
 #include <stdio.h>
 
 int main(void)
 {
 	char str[] =
-    "73167176531330624919225119674426574742355349194934"
+   "73167176531330624919225119674426574742355349194934"
     "96983520312774506326239578318016984801869478851843"
     "85861560789112949495459501737958331952853208805511"
     "12540698747158523863050715693290963295227443043557"
@@ -52,19 +52,26 @@ int main(void)
     "05886116467109405077541002256983155200055935729725"
     "71636269561882670428252483600823257530420752963450";	
 	int i = 0;
-	int result = 0;
-	int prod = 0;
+	int y = 0;
+	long result = 0;
+	long prod = 1;
 
-	while (i != '\n')
+	while (i < (strlen(str) - 13))
 	{
-		prod = (str[i] - 48) * (str[i+1] - 48) * (str[i+2] - 48) * (str[i+3] - 48) * (str[i+4] - 48);
+		while (y < 13)
+		{
+			prod *= str[i + y] - 48;
+			y++;
+		} 
 		if (prod > result)
 		{
 			result = prod;
 		}
-	i++;
+		prod = 1;
+		y = 0;
+		i++;
 	}
-	printf("%d", i);
+	printf("%ld", result);
 	return(0);
 }
 
