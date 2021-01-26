@@ -34,6 +34,7 @@ int main(void)
 			sum += i;
 		}
 		i++;
+		printf("%llu\n", i);
 	}	
 	printf("%llu", sum);
 	return (0);
