@@ -19,17 +19,46 @@ What is the value of the first triangle number to have over five hundred divisor
 
 #include <stdio.h>
 
+int count_divisors(int n)
+{
+	int divisors = 0;
+	int i = 1;
+
+	for (; i <= n; i++)
+	{
+		if (n % i == 0)
+		{
+			divisors++;
+		}
+	}
+
+	return divisors;
+}
+
 int main(void)
 {
-    int i, j = 1, k = 1; 
- 	int n = 3;
+	int n = 1;
+	int sum = 0;
+	int divisors = 0;
+	int largest_divisor = 0;
 
-    for (i = 1; i <= n; i++) 
-    { 
-        printf(" %d ", k); 
-        j = j + 1; 
-        k = k + j; 
-    } 
-	printf(" i = %d", k); 
-	return(0);
+	for (; n <= 10000000; n++)
+	{
+		sum += n;
+		divisors = count_divisors(sum);
+		
+		if (divisors > largest_divisor)
+		{
+			largest_divisor = divisors;
+			printf("Sum : %d, Nombre de divisors : %d\n", sum, divisors);
+		}
+
+		if (divisors > 500)
+		{
+			break;
+		}
+	}
+
+
+	return 0;
 }
